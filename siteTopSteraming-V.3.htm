@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Streaming - O Melhor do Entretenimento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #e50914; /* Vermelho estilo Streaming */
+            --secondary-color: #222;
+            --accent-color: #00ff88; /* Verde para destaques/wpp */
+            --text-color: #f5f5f5;
+            --bg-color: #141414;
+            --card-bg: #1f1f1f;
+            --gradient: linear-gradient(45deg, #e50914, #b20710);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-color);
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            max-height: 50px;
+            width: auto;
+        }
+
+        .brand-name {
+    font-weight: 600;                  /* deixa bem grosso */
+    color: white;                      /* cor branca */
+    font-size: 1.8rem;                 /* tamanho do texto, pode ajustar */
+    font-family: 'Montserrat', sans-serif; /* mantém a fonte Montserrat */
+    margin: 0;                          /* remove margem padrão do h1 */
+    text-transform: uppercase;          /* mantém em maiúsculas */
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* sombra para destacar no fundo */
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        #searchInput {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+            background: #333;
+            color: white;
+            outline: none;
+            width: 150px;
+            transition: width 0.3s;
+        }
+
+        #searchInput:focus {
+            width: 200px;
+            background: #444;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            color: white;
+            margin-left: -30px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        /* --- COMO FUNCIONA --- */
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+            border: 1px solid #333;
+        }
+
+        .step-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- PLANOS --- */
+        .plan-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 20px;
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .toggle-btn.active, .toggle-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .plans-container {
+            display: none; /* Hidden by default, toggled by JS */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .plans-container.active {
+            display: grid;
+        }
+
+        .plan-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+
+        .plan-header {
+            background: #2a2a2a;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .plan-header h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .plan-body {
+            padding: 20px;
+        }
+
+        .plan-tier {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #444;
+        }
+
+        .plan-tier:last-child {
+            border-bottom: none;
+        }
+
+        .plan-tier h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            background: #333;
+            padding: 5px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        .price-row.highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .features-list {
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+        
+        .features-list li {
+            margin-bottom: 5px;
+        }
+
+        .features-list i {
+            color: var(--accent-color);
+            margin-right: 5px;
+        }
+
+        .select-plan-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .select-plan-btn:hover {
+            background: #b20710;
+        }
+
+        /* --- DIFERENÇAS --- */
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .diff-card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .diff-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .diff-details {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .diff-details strong {
+            color: white;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* --- FAQ --- */
+        .faq-item {
+            margin-bottom: 15px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            background: #2a2a2a;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            transition: transform 0.3s;
+        }
+
+        .faq-item details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-content {
+            padding: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+        
+        .faq-content ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        /* --- FORMULÁRIO WHATSAPP --- */
+        .form-section {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .form-box {
+            background: rgba(0,0,0,0.8);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #333;
+            border: 1px solid #555;
+            color: white;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: #25d366; /* Cor WhatsApp */
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            background: #1ebc57;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            padding: 40px 10%;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        /* --- WHATSAPP FLOATING --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Highlight de busca */
+        .highlight {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px;
+            border-radius: 2px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 5%;
+            }
+            
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.95);
+                display: none;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                order: 3;
+            }
+            
+            .search-container {
+                order: 2;
+                margin-right: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+<header>
+    <div class="logo-container">
+        <img src="https://i.postimg.cc/4xvV07zx/Logo_2025.png" 
+             alt="Top Streaming Logo" 
+             class="logo-img" 
+             onerror="this.style.display='none'">
+        <h1 class="brand-name">TOP STREAMING OFICIAL</h1>
+    </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Pesquisar...">
+            <button class="search-btn" onclick="searchText()"><i class="fas fa-search"></i></button>
+        </div>
+
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav id="navbar">
+            <ul>
+                <li><a href="#inicio">INÍCIO</a></li>
+                <li><a href="#como-funciona">COMO FUNCIONA</a></li>
+                <li><a href="#planos">PLANOS</a></li>
+                <li><a href="#diferencas">DIFERENÇAS</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#FALE CONOSCO">FALE CONOSCO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- INÍCIO -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>O MELHOR DO ENTRETENIMENTO</h1>
+            <p>Filmes, Séries, Canais Ao Vivo e muito mais. Estabilidade garantida e qualidade 4K.</p>
+            <a href="#SOLICITE SEU TESTE" class="cta-button">SOLICITAR TESTE GRÁTIS</a>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section id="como-funciona">
+        <h2 class="section-title">COMO FUNCIONA</h2>
+        <div class="steps">
+            <div class="step-card">
+                <i class="fas fa-user-edit"></i>
+                <h3>1. Solicite seu Teste</h3>
+                <p>Preencha o formulário abaixo e receba seu acesso teste de 3 horas.</p>
+            </div>
+            <div class="step-card">
+                <i class="fas fa-tv"></i>
+                <h3>2. Instale o App</h3>
+                <p>Configure em sua Smart TV, TV Box, Celular ou Computador.</p>
+            </div>
+            <div class="step-card">
+                <i class="fas fa-play-circle"></i>
+                <h3>3. Aproveite</h3>
+                <p>Assista a mais de 100.000 conteúdos sem travamentos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section id="planos">
+        <h2 class="section-title">NOSSOS PLANOS</h2>
+        
+        <div class="plan-toggle">
+            <button class="toggle-btn active" onclick="showPlans('oneAccess')">1 DISPOSITIVOS AO MESMO TEMPO</button>
+            <button class="toggle-btn" onclick="showPlans('twoAccess')">3 DISPOSITIVOS AO MESMO TEMPO</button>
+        </div>
+
+        <!-- CONTAINER 1 DISPOSITIVOS AO MESMO TEMPO -->
+        <div id="oneAccess" class="plans-container active">
+            
+            <!-- SERVIDOR SIMPLES PLUS -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>SERVIDOR SIMPLES PLUS</h3>
+                    <p style="font-size:0.8rem; margin-top:5px; color:#aaa;">Custo Benefício</p>
+                </div>
+                <div class="plan-body">
+                    <div class="plan-tier">
+                        <h4>PLANO PLUS</h4>
+                        <div class="price-row highlight"><span>Mensal</span> <span>R$ 30,00</span></div>
+                        <div class="price-row"><span>Quadrimestral</span> <span>R$ 108,00</span></div>
+                        <div class="price-row"><span>Semestral</span> <span>R$ 153,00</span></div>
+                        <div class="price-row"><span>Anual</span> <span>R$ 240,00</span></div>
+                        <ul class="features-list">
+                             <li><i class="fas fa-check"></i> Canais, Filmes, Séries, + Adultos</li>
+                             <li><i class="fas fa-exclamation-triangle" style="color:orange;"></i> Estabilidade básica</li>
+                        </ul>
+                        <button class="select-plan-btn" onclick="selectPlan('Simples Plus - 1 Dispositivos ao mesmo tempo')">Contratar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVIDOR INTERMEDIÁRIO -->
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>SERVIDOR INTERMEDIÁRIO</h3>
+                    <p style="font-size:0.8rem; margin-top:5px; color:#aaa;">Equilibrado</p>
+                </div>
+                <div class="plan-body">
+                    <div class="plan-tier">
+                        <h4>BÁSICO (Canais)</h4>
+                        <div class="price-row highlight"><span>Mensal</span> <span>R$ 35,00</span></div>
+                        <div class="price-row"><span>Quadrimestral</span> <span>R$ 105,00</span></div>
+                        <div class="price-row"><span>Semestral</span> <span>R$ 175,00</span></div>
+                        <div class="price-row"><span>Anual</span> <span>R$ 350,00</span></div>
+                        <button class="select-plan-btn" onclick="selectPlan('Intermediário Básico - 1 Dispositivos ao mesmo tempo')">Contratar</button>
+                    </div>
+                    <div class="plan-tier">
+                        <h4>PREMIUM (+Filmes/Séries)</h4>
+                        <div class="price-row highlight"><span>Mensal</span> <span>R$ 40,00</span></div>
+                        <div class="price-row"><span>Quadrimestral</span> <span>R$ 120,00</span></div>
+                        <div class="price-row"><span>Semestral</span> <span>R$ 200,00</span></div>
+                        <div class="price-row"><span>Anual</span> <span>R$ 400,00</span></div>
+                        <button class="select-plan-btn" onclick="selectPlan('Intermediário Premium - 1 Dispositivos ao mesmo tempo')">Contratar</button>
+                    </div>
+                    <div class="plan-tier">
+                        <h4>PLUS (+Adultos)</h4>
+                        <div class="price-row highlight"><span>Mensal</span> <span>R$ 45,00</span></div>
+                        <div class="price-row"><span>Quadrimestral</span> <span>R$ 135,00</span></div>
+                        <div class="price-row"><span>Semestral</span> <span>R$ 225,00</span></div>
+                        <div class="price-row"><span>Anual</span> <span>R$ 450,00</span></div>
+                        <button class="select-plan-btn" onclick="selectPlan('Intermediário Plus - 1 Dispositivos ao mesmo tempo')">Contratar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVIDOR VIP -->
+            <div class="plan-card" style="border-color: gold; box-shadow: 0 0 10px rgba(255,215,0,0.2);">
+                <div class="plan-header" style="background: linear-gradient(45deg, #333, #444);">
+                    <h3 style="color: gold;"><i class="fas fa-crown"></i> SERVIDOR VIP</h3>
+                    <p style="font-size:0.8rem; margin-top:5px; color:#aaa;">Máxima Qualidade</p>
+                </div>
+                <div class="plan-body">
+                    <div class="plan-tier">
+                        <h4>BÁSICO (Canais)</h4>
+                        <div class="price-row highlight"><span>Mensal</span> <span>R$ 38,00</span></div>
+                        <div class="price-row"><span>Quadrimestral</span> <span>R$ 114,00</span></div>
+                        <div class="price-row"><span>Semestral</span> <span>R$ 190,00</span></div>
+                        <div class="price-row"><span>Anual</span> <span>R$ 380,00</span></div>
+                        <button class="select-plan-btn" onclick="selectPlan('VIP Básico - 1 Dispositivos ao mesmo tempo')">Contratar</button>
+                    </div>
+                    <div class="plan-tier">
+                        <h4>PREMIUM (+Filmes/Séries)</h4>
+                        <div class="price-row highlight"><span>Mensal</span> <span>R$ 43,00</span></div>
+                        <div class="price-row"><span>Quadrimestral</span> <span>R$ 129,00</span></div>
+                        <div class="price-row"><span>Semestral</span> <span>R$ 215,00</span></div>
+                        <div class="price-row"><span>Anual</span> <span>R$ 430,00</span></div>
+                        <button class="select-plan-btn" onclick="selectPlan('VIP Premium - 1 Dispositivos ao mesmo tempo')">Contratar</button>
+                    </div>
+                    <div class="plan-tier">
+                        <h4>PLUS (+Adultos)</h4>
+                        <div class="price-row highlight"><span>Mensal</span> <span>R$ 48,00</span></div>
+                        <div class="price-row"><span>Quadrimestral</span> <span>R$ 144,00</span></div>
+                        <div class="price-row"><span>Semestral</span> <span>R$ 240,00</span></div>
+                        <div class="price-row"><span>Anual</span> <span>R$ 480,00</span></div>
+                        <button class="select-plan-btn" onclick="selectPlan('VIP Plus - 1 Dispositivos ao mesmo tempo')">Contratar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CONTAINER 2 DISPOSITIVOS AO MESMO TEMPO -->
+        <div id="twoAccess" class="plans-container">
+            
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>OPÇÃO 3 TELAS</h3>
+                    <p style="color:#aaa;">2 TVs + 1 Android</p>
+                </div>
+                <div class="plan-body">
+                    <div class="price-row highlight"><span>Mensal</span> <span>R$ 55,00</span></div>
+                    <div class="price-row"><span>Quadrimestral</span> <span>R$ 165,00</span></div>
+                    <div class="price-row"><span>Semestral</span> <span>R$ 275,00</span></div>
+                    <div class="price-row"><span>Anual</span> <span>R$ 550,00</span></div>
+                    <button class="select-plan-btn" onclick="selectPlan('Multitelas - 3 Telas')">Contratar</button>
+                </div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>OPÇÃO 2 TELAS</h3>
+                    <p style="color:#aaa;">TVs ou Android</p>
+                </div>
+                <div class="plan-body">
+                    <div class="price-row highlight"><span>Mensal</span> <span>R$ 40,00</span></div>
+                    <div class="price-row"><span>Quadrimestral</span> <span>R$ 120,00</span></div>
+                    <div class="price-row"><span>Semestral</span> <span>R$ 200,00</span></div>
+                    <div class="price-row"><span>Anual</span> <span>R$ 400,00</span></div>
+                    <button class="select-plan-btn" onclick="selectPlan('Multitelas - 2 Telas')">Contratar</button>
+                </div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-header">
+                    <h3>2 TELAS ANDROID</h3>
+                    <p style="color:#aaa;">Exclusivo Android</p>
+                </div>
+                <div class="plan-body">
+                    <div class="price-row highlight"><span>Mensal</span> <span>R$ 30,00</span></div>
+                    <div class="price-row"><span>Quadrimestral</span> <span>R$ 108,00</span></div>
+                    <div class="price-row"><span>Semestral</span> <span>R$ 153,00</span></div>
+                    <div class="price-row"><span>Anual</span> <span>R$ 240,00</span></div>
+                    <button class="select-plan-btn" onclick="selectPlan('Multitelas - 2 Android')">Contratar</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DIFERENÇAS DOS PLANOS -->
+    <section id="diferencas" style="background-color: #1a1a1a;">
+        <h2 class="section-title">DIFERENÇAS DOS SERVIDORES</h2>
+        <div class="diff-grid">
+            
+            <div class="diff-card">
+                <h3><i class="fas fa-crown"></i> SERVIDOR VIP</h3>
+                <div class="diff-details">
+                    <h4>IDEAL PARA QUEM AMA FUTEBOL E CANAIS AO VIVO. ALTA ESTABILIDADE E SEM QUEDAS.</h4>
+                    <br>
+                    <strong>PONTOS POSITIVOS:</strong> Alta estabilidade devido à tecnologia de prevenção de quedas; Mais rápido no carregamento de imagem; Ideal para esportes ao vivo pela menor taxa de delay (10–20s); Suporta mais clientes simultâneos; Menos pesado internamente, favorecendo desempenho.
+                    <strong>PONTOS NEGATIVOS:</strong> Exige internet mínima mais alta (100 Mb); Menor quantidade de conteúdos em comparação ao Intermediário (aproximadamente 80mil); Pode não ser o ideal para quem prioriza acervos extensos; Alguns dispositivos requer aplicativo de versão paga.
+                    <strong>CANAIS INTERNACIONAIS:</strong> Consulte a disponibilidade
+                </div>
+            </div>
+
+            <div class="diff-card">
+                <h3><i class="fas fa-balance-scale"></i> SERVIDOR INTERMEDIÁRIO</h3>
+                <div class="diff-details">
+                    <h4>EQUILÍBRIO ENTRE QUANTIDADE E ESTABILIDADE. ENORME BIBLIOTECA.</h4>
+                    <br>
+                    <strong>PONTOS POSITIVOS:</strong> Grande quantidade de conteúdos (110.000+); Boa estabilidade e qualidade de imagem; Ideal para quem busca variedade entre canais, filmes e séries.
+                    <strong>PONTOS NEGATIVOS:</strong> Pode apresentar pequenas instabilidades devido ao volume elevado de conteúdos; Delay maior que o VIP (cerca de 1 minuto); Não é o mais indicado para esportes ao vivo.
+                </div>
+            </div>
+
+            <div class="diff-card">
+                <h3><i class="fas fa-tv"></i> SERVIDOR SIMPLES PLUS</h3>
+                <div class="diff-details">
+                    <h4>FOCO EM CUSTO-BENEFÍCIO E VARIEDADE.</h4>
+                    <br>
+                    <strong>PONTOS POSITIVOS:</strong> Opção mais acessível financeiramente; Biblioteca ampla e com boa qualidade de imagem; Alternativa básica para quem não exige máxima estabilidade.
+                    <strong>PONTOS NEGATIVOS:</strong> Mais propenso a travamentos, especialmente em horários de pico; Delay maior que o VIP e o Intermediário; Estabilidade inferior e mais dependente de atualizações constantes.
+                </div>
+            </div>
+
+            <div class="diff-card">
+                <h3><i class="fas fa-users"></i> SERVIDOR MULTITELAS</h3>
+                <div class="diff-details">
+                    <h4>IDEAL PARA FAMÍLIAS E ECONOMIA COMPARTILHADA.</h4>
+                    <br>
+                    <strong>PONTOS POSITIVOS:</strong> Permite até 3 acessos simultâneos na mesma residência; Econômico para famílias ou várias pessoas usando o mesmo IP; Une todos os membros da casa em uma única assinatura.
+                    <strong>PONTOS NEGATIVOS:</strong> Um dos acessos obrigatoriamente precisa ser em dispositivo Android; Pode ter desempenho reduzido; Pode não ter a mesma estabilidade individual dos servidores focados em uma única tela; Delay maior que o VIP e o Intermediário.
+                </div>
+            </div>
+
+     <div class="diff-card">
+                <h3><i class="fa-solid fa-bolt"></i> APLICATIVOS</h3>
+                <div class="diff-details">
+                    <h4>DIFERENÇAS ENTRE PAGOS E GRATUITOS.</h4>
+                    <br>
+                    <strong>APLICATIVOS GRATUITOS:</strong> Aplicativos gratuitos têm funcionalidades limitadas, podem apresentar travamentos, instabilidade, falta de suporte e dependem totalmente da configuração do cliente e da qualidade da internet. Não há garantia de qualidade ou estabilidade.
+                    <strong>APLICATIVOS PAGOS:</strong> Já os aplicativos pagos oferecem experiência superior, com atualizações constantes, navegação estável, suporte técnico, ausência de anúncios e configuração completa realizada pela TOPStreaming, garantindo melhor desempenho.
+                    <strong>VALORES:</strong> Entre R$ 25,00 à 30,00
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <h2 class="section-title">PERGUNTAS FREQUENTES (FAQ)</h2>
+        
+        <div class="faq-item">
+            <details>
+                <summary>1. O que é IPTV?</summary>
+                <div class="faq-content">
+                    IPTV é um serviço que permite assistir canais de TV, filmes, séries, documentários e outros conteúdos por meio da internet, tudo diretamente em um aplicativo instalado na sua TV, celular, TV Box ou computador. O que você precisa saber sobre iptv, antes de entender as diferenças entre os planos, é importante saber que o sistema iptv foi criado para transmitir canais via satélite (como premiere, telecine, hbo, discovery, etc.). já os serviços de streaming, como hbo+, star+ e prime vídeo, transmitem conteúdos que não são captados via satélite, mas sim pelas plataformas online. isso significa que pode haver atrasos na transmissão desses conteúdos em relação aos canais via satélite. Portanto, os canais de tv via satélite geralmente têm uma qualidade superior aos conteúdos de streaming.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>2. Quanto tempo dura o teste gratuito?</summary>
+                <div class="faq-content">
+                    O teste é 100% gratuito, sem compromisso e dura 3 horas. Ele pode ser utilizado apenas uma vez por usuário.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>3. Em quais dispositivos o teste funciona?</summary>
+                <div class="faq-content">
+                    Nosso sistema é compatível com praticamente todos os dispositivos modernos:
+                    <ul>
+                        <li>Smart TVs Samsung, LG, TCL, Philips, Philco, AOC, Hisense</li>
+                        <li>Celulares e tablets Android e iOS</li>
+                        <li>Computadores (Windows, Mac e Linux)</li>
+                        <li>TV Box Android</li>
+                        <li>Amazon Fire TV Stick</li>
+                    </ul>
+                    Você pode testar em vários dispositivos para verificar a compatibilidade.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>4. Quais conteúdos estão disponíveis no teste?</summary>
+                <div class="faq-content">
+                    Durante o teste você terá acesso completo ao catálogo:
+                    <ul>
+                        <li>Canais abertos brasileiros</li>
+                        <li>Canais esportivos</li>
+                        <li>Filmes, séries e novelas</li>
+                        <li>Documentários</li>
+                        <li>Conteúdo infantil</li>
+                        <li>Notícias</li>
+                        <li>VOD com filmes e séries atualizados</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>5. Posso fazer o teste mais de uma vez?</summary>
+                <div class="faq-content">
+                    Não. O teste é liberado uma única vez por usuário, tempo suficiente para avaliar qualidade, estabilidade e variedade do conteúdo.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>6. Como funciona a assinatura? Qual a duração?</summary>
+                <div class="faq-content">
+                    A assinatura dos canais possui duração de 30 dias corridos, ao passo que, os aplicativos possui duração de 12 meses.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>7. O serviço funciona fora do Brasil?</summary>
+                <div class="faq-content">
+                    Sim! Os planos funcionam normalmente em qualquer país.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>8. Qual é a média de delay (atraso da transmissão)?</summary>
+                <div class="faq-content">
+                    <ul>
+                        <li><strong>Plano VIP:</strong> entre 20 e 30 segundos</li>
+                        <li><strong>Demais planos:</strong> média superior a 1 minuto</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>9. O serviço possui canais internacionais?</summary>
+                <div class="faq-content">
+                    Sim, possuímos diversos canais internacionais. Consulte um atendente para indicação conforme sua preferência.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>10. Preciso instalar algum aplicativo para usar o serviço?</summary>
+                <div class="faq-content">
+                    Sim. É necessário instalar um player compatível com seu dispositivo. Alguns dispositivos exigem aplicativos pagos, como no caso do sistema Roku, que possui taxa anual entre R$ 25,00 e R$ 30,00.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>11. O serviço possui conteúdos legendados?</summary>
+                <div class="faq-content">
+                    Sim. Nosso plano VIP possui uma das grades mais completas em conteúdos legendados. Entretanto, isso exige o uso de um player de versão paga (média anual de R$ 25,00 a R$ 30,00), consulte um dos nossos atendentes.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>12. Posso usar em duas ou mais telas ao mesmo tempo?</summary>
+                <div class="faq-content">
+                    Sim. O número de telas simultâneas depende do plano contratado:
+                    <ul>
+                        <li>1 conexão</li>
+                        <li>2 conexões - (mesma rede IP)</li>
+                        <li>3 conexões - (mesma rede IP)</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>13. Funciona em TV antiga (não Smart)?</summary>
+                <div class="faq-content">
+                    Sim! Basta utilizar uma TV Box Android, que transforma sua TV antiga em uma Smart TV compatível com nossos aplicativos.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>14. Quais são as formas de pagamento?</summary>
+                <div class="faq-content">
+                    Aceitamos:
+                    <ul>
+                        <li>PIX</li>
+                        <li>Cartão de crédito, com adicional da operadora</li>
+                        <li>Outras opções apresentadas pelo atendimento</li>
+                    </ul>
+                    Oferecemos descontos especiais para planos quadrimestral, semestral ou anual. Também temos bonificação para indicações. Todas as transações ocorrem em plataformas seguras e criptografadas.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>15. Como é feita a renovação do plano?</summary>
+                <div class="faq-content">
+                    A renovação pode ser automática (cartão) ou manual via atendimento. Enviamos lembretes antes do vencimento para evitar interrupções.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>16. Preciso de internet muito rápida para usar?</summary>
+                <div class="faq-content">
+                    Recomendamos 100 Mbps ou mais para uso simultâneo e maior estabilidade.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>17. O serviço trava? Como evitar cortes?</summary>
+                <div class="faq-content">
+                    A estabilidade depende da qualidade da sua internet, dispositivo e aplicativo Para melhor desempenho:
+                    <ul>
+                        <li>Use conexão via cabo sempre que possível</li>
+                        <li>Evite Wi-Fi distante do roteador</li>
+                        <li>Reinicie o modem/roteador se notar lentidão</li>
+                        <li>Desconecte e conecte no aplicativo</li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>18. Posso assistir conteúdo em 4K?</summary>
+                <div class="faq-content">
+                    Sim, alguns conteúdos estão disponíveis em 4K, dependendo da sua velocidade de internet e do plano contratado. Também terá acesso aos canais em FHD, HD e SD.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>19. Existe fidelidade?</summary>
+                <div class="faq-content">
+                    Não. Você pode cancelar quando quiser, sem multas.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+
+   <summary>20. Canais disponiveis?</summary> 
+                <div class="faq-content">
+                    Possuímos uma vasta grade de canais abertos e fechados, possuímos os melhores canais de Novelas, sendo eles; TLNovelas África, TLNNetwork, ZAPNovelas, GloboON, Televisa e LasEstrellas, possuímos tambpem os melhores canais esportimos, Amazon Prime, Disney+, UFC Fight Pass, NBA, NFL, Prime Video, dentre outros. Consulte a disponibilidade.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>21. Horário de Funcionamento?</summary> 
+                <div class="faq-content">
+                    Segunda à Sexta: 09h às 22h e Sáb: 09h às 20h. Domingos e Feriados não há atendimentos.
+                </div>
+            </details>
+        </div>
+
+    </section>
+
+<!-- FORMULÁRIO DE CONTATO/WHATSAPP -->
+<section id="SOLICITE SEU TESTE" class="form-section">
+    <h2 class="section-title">SOLICITE SEU TESTE</h2>
+    <div class="form-box">
+        <form id="whatsappForm" onsubmit="sendToWhatsapp(event)">
+            <div class="form-group">
+                <label for="nome">Nome e Sobrenome:</label>
+                <input type="text" id="nome" required placeholder="Digite seu nome completo">
+            </div>
+
+            <div class="form-group">
+                <label for="plano">Plano Desejado:</label>
+                <select id="plano" required>
+                    <option value="">Selecione...</option>
+                    <option value="VIP">Servidor VIP</option>
+                    <option value="Intermediário">Servidor Intermediário</option>
+                    <option value="Simples Plus">Simples Plus</option>
+                    <option value="Multitelas">Multitelas 2 telas</option>
+                    <option value="Multitelas">Multitelas 3 telas</option>
+                </select>
+            </div>
+
+            <!-- NOVO CAMPO ADICIONADO -->
+            <div class="form-group">
+                <label for="aplicativo">Aplicativo Desejado:</label>
+                <select id="aplicativo" required>
+                    <option value="">Selecione...</option>
+                    <option value="Pago">Pago</option>
+                    <option value="Gratuito">Gratuito</option>
+                </select>
+            </div>
+            <!-- FIM DO NOVO CAMPO -->
+
+            <div class="form-group">
+                <label for="dispositivo">Dispositivo para teste:</label>
+                <input type="text" id="dispositivo" required placeholder="Ex: Smart TV Samsung, TV Box, Celular...">
+            </div>
+
+            <div class="form-group">
+                <label for="obs">Alguma observação?</label>
+                <textarea id="obs" rows="3" placeholder="Ex: Preciso de ajuda para instalar"></textarea>
+            </div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fab fa-whatsapp"></i> ENVIAR PARA WHATSAPP
+                </button>
+            </form>
+        </div>
+    </section>
+<section id="FALE CONOSCO" class="contact-info">
+        <h2 class="section-title">FALE CONOSCO</h2>
+        
+        <h2 class="contact-subtitle">Nosso atendimento é de <span>Segunda a Sábado!</span></h2>
+
+        <div class="info-grid">
+            <div class="info-item left-border">
+                <i class="fas fa-envelope icon"></i>
+                <h3>Email</h3>
+                <p>topstreamingoficial@gmail.com</p>
+            </div>
+
+            <div class="info-item left-border">
+                <i class="fas fa-phone-alt icon"></i>
+                <h3>Telefone</h3>
+                <p>+55 31 9 8837-5553</p>
+                <p style="font-size:0.8rem; margin-top:5px; color:#999;">+55 31 3157-8391 (robô de avisos)</p>
+            </div>
+
+            <div class="info-item left-border">
+                <i class="fas fa-clock icon"></i>
+                <h3>Horários</h3>
+                <p>Seg à Sex: 09h às 22h<br>
+                Sáb: 09h às 20h<br>
+                Dom. e Feriados: Sem atendimento</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo-container" style="justify-content: center; margin-bottom: 20px;">
+            <h1 class="brand-name">Top Streaming</h1>
+        </div>
+        <p>&copy; 2023 Top Streaming. Todos os direitos reservados.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #666;">Os preços podem sofrer alterações sem aviso prévio.</p>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/553188375553" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Lógica de Tabs dos Planos
+        function showPlans(planType) {
+            // Remove active class from buttons
+            const buttons = document.querySelectorAll('.toggle-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Hide all containers
+            const containers = document.querySelectorAll('.plans-container');
+            containers.forEach(container => container.classList.remove('active'));
+
+            // Show selected
+            document.getElementById(planType).classList.add('active');
+            
+            // Highlight button
+            if(planType === 'oneAccess') {
+                buttons[0].classList.add('active');
+            } else {
+                buttons[1].classList.add('active');
+            }
+        }
+
+        // Preenche o formulário automaticamente se o usuário clicar em "Contratar" no card
+        function selectPlan(planName) {
+            const select = document.getElementById('plano');
+            
+            // Tenta encontrar uma opção que corresponda ou define no texto
+            let optionFound = false;
+            for(let i=0; i<select.options.length; i++){
+                if(planName.includes(select.options[i].value)){
+                    select.selectedIndex = i;
+                    optionFound = true;
+                    break;
+                }
+            }
+            
+            // Rola até o formulário
+            document.getElementById('SOLICITE SEU TESTE').scrollIntoView();
+            
+            // Se não for uma das opções padrão, adiciona no campo de observação
+            if(!optionFound) {
+                document.getElementById('obs').value = "Tenho interesse especificamente no plano: " + planName;
+            }
+        }
+
+        // Enviar para WhatsApp
+        function sendToWhatsapp(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            const plano = document.getElementById('plano').value;
+            const aplicativo = document.getElementById('aplicativo').value;
+            const dispositivo = document.getElementById('dispositivo').value;
+            const obs = document.getElementById('obs').value;
+
+            const text = `*NOVA SOLICITAÇÃO VIA SITE*%0A%0A*Nome:* ${nome}%0A*Plano Desejado:* ${plano}%0A*Aplicativo:* ${aplicativo}%0A*Dispositivo:* ${dispositivo}%0A*Observação:* ${obs}`;
+            
+            const url = `https://wa.me/553188375553?text=${text}`;
+            
+            window.open(url, '_blank');
+        }
+
+        // Função de Pesquisa
+        function searchText() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            if(!input) return;
+
+            // Remove destaques anteriores
+            const marks = document.querySelectorAll('mark');
+            marks.forEach(mark => {
+                const parent = mark.parentNode;
+                parent.replaceChild(document.createTextNode(mark.textContent), mark);
+                parent.normalize(); // Une nós de texto adjacentes
+            });
+
+            // Busca simples (apenas scroll para a primeira ocorrência visível)
+            // Para implementação real completa de highlight seria necessário bibliotecas complexas,
+            // aqui faremos um scroll e alerta visual simples nas seções.
+            
+            const sections = document.querySelectorAll('section, h2, h3, p, li, summary');
+            let found = false;
+
+            for (let el of sections) {
+                if (el.innerText.toLowerCase().includes(input) && el.offsetParent !== null) { // offsetParent check visibility
+                    el.scrollIntoView({behavior: "smooth", block: "center"});
+                    el.style.border = "2px solid var(--primary-color)";
+                    setTimeout(() => {
+                        el.style.border = "none";
+                    }, 2000);
+                    found = true;
+                    break; // Para no primeiro resultado
+                }
+            }
+
+            if(!found) {
+                alert("Termo não encontrado.");
+            }
+        }
+
+        // Menu Mobile
+        function toggleMenu() {
+            const nav = document.getElementById('navbar');
+            nav.classList.toggle('active');
+        }
+
+        // Fechar menu ao clicar em link
+        document.querySelectorAll('#navbar a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navbar').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
+
